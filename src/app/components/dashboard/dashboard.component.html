@@ -1,0 +1,96 @@
+<div class="mat-elevation-z8 bg-[#e4e0da] p-[10px] rounded-lg">
+	<div class="flex gap-3">
+		<mat-form-field>
+			<mat-label>Search</mat-label>
+			<input #input
+				(keyup)="applySearch($event)"
+				matInput
+				placeholder="Name">
+		</mat-form-field>
+		<mat-form-field appearance="fill">
+			<mat-label>Stock Status</mat-label>
+			<mat-select (selectionChange)="onSelectionChange($event)">
+				<mat-option value>All</mat-option>
+				<mat-option value="low">Low Stock</mat-option>
+				<mat-option value="in">In Stock</mat-option>
+			</mat-select>
+		</mat-form-field>
+	</div>
+	<div class="table-container">
+		<table [dataSource]="dataSource"
+			mat-table>
+			<ng-container matColumnDef="ProductName">
+				<th *matHeaderCellDef
+					mat-header-cell>
+					Name
+				</th>
+				<td *matCellDef="let element"
+					mat-cell>
+					{{element.ProductName}}
+				</td>
+			</ng-container>
+			<ng-container matColumnDef="category">
+				<th *matHeaderCellDef
+					mat-header-cell>
+					Category
+				</th>
+				<td *matCellDef="let element"
+					mat-cell>
+					{{element.category}}
+				</td>
+			</ng-container>
+			<ng-container matColumnDef="AvailablePieces">
+				<th *matHeaderCellDef
+					mat-sort-header
+					mat-header-cell>
+					Stock
+				</th>
+				<td *matCellDef="let element"
+					mat-cell>
+					{{element.AvailablePieces}}
+				</td>
+			</ng-container>
+			<ng-container matColumnDef="lastDate">
+				<th *matHeaderCellDef
+					mat-header-cell>
+					Last Updated Date
+				</th>
+				<td *matCellDef="let element"
+					mat-cell>
+					{{element.lastDate | date :'M/d/yy'}}
+				</td>
+			</ng-container>
+			<ng-container matColumnDef="Edit">
+				<th *matHeaderCellDef
+					mat-header-cell>
+					Edit
+				</th>
+				<td *matCellDef="let element"
+					mat-cell>
+					<mat-icon (click)="editItem(element)">edit</mat-icon>
+				</td>
+			</ng-container>
+
+
+			<tbody>
+				<tr *matHeaderRowDef="displayedColumns"
+					mat-header-row></tr>
+				<tr *matRowDef="let row; columns: displayedColumns;"
+					mat-row></tr>
+
+
+				<tr *matNoDataRow
+					class="mat-row">
+					<td class="mat-cell"
+						colspan="4">
+						No data matching the filter "{{input.value}}"
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<mat-paginator [pageSizeOptions]="[5, 10, 20]"
+		showFirstLastButtons
+		aria-label="Select page of periodic elements">
+	</mat-paginator>
+</div>

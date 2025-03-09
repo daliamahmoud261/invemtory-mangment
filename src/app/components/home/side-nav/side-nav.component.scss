@@ -1,0 +1,35 @@
+.sidenav-container {
+  height: 100vh;
+  background: #232f3e;
+  .matSideNav {
+    width: 250px;
+    background: #e4e0da;
+    color: white;
+  }
+  .content {
+    padding: 20px;
+    background: #232f3e;
+    padding-top: 4px;
+  }
+}
+
+
+mat-icon {
+  margin-right: 10px;
+}
+
+.active-tab {
+  background: #232f3e !important;
+  border-radius: 0px !important;
+  .tab-name {
+    color: white !important;
+  }
+  mat-icon {
+    color: white !important;
+  }
+}
+
+::ng-deep .mdc-list-item__primary-text {
+  display: flex !important;
+  align-items: center !important;
+}

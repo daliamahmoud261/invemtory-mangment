@@ -1,0 +1,11 @@
+
+<div class="bg-white m-auto sm:rounded-2xl p-[0px] md:p-[0px] sm:p-[40px] m:w-[95%] h-screen sm:h-fit min-h-full flex-1 min-w-full">
+	<div class=" mx-auto h-full sm:px-[0px] sm:pt-[0px]">
+		<div class="sm:h-[96px] h-[48px] md:h-[48px] flex flex-col justify-center bg-ga-white">
+			<app-tool-bar (isExpanded)="isExpanded($event)"></app-tool-bar>
+		</div>
+		<div class="sm:h-[calc(100%_-_96px)] h-[calc(100%_-_48px)] md:h-[calc(100%_-_48px)] overflow-hidden">
+			<app-side-nav [isExpanded]="isExpandedNav"></app-side-nav>
+		</div>
+	</div>
+</div>

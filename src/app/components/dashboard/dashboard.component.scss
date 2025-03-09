@@ -1,0 +1,15 @@
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  .mat-table {
+    min-width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mat-header-cell,
+  .mat-cell {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

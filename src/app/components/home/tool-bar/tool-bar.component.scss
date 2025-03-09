@@ -1,0 +1,14 @@
+mat-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: #232f3e;
+    color: white;
+}
+
+mat-icon {
+    margin-right: 10px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
