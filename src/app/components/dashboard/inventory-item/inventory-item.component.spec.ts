@@ -17,10 +17,7 @@ describe('InventoryItemComponent', () => {
 
   beforeEach(async () => {
     itemSubject = new BehaviorSubject<productModel>({} as productModel);
-
-    mockService = jasmine.createSpyObj('AddEditItemsService', [], { item: itemSubject });
-
-    // Mock Router
+    mockService = jasmine.createSpyObj('AddEditItemsService', ['openSnackBar'],{ item: itemSubject });
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
@@ -31,7 +28,7 @@ describe('InventoryItemComponent', () => {
       ],
       providers: [
         { provide: AddEditItemsService, useValue: mockService },
-        { provide: Router, useValue: mockRouter }, // ✅ Provide the mock Router
+        { provide: Router, useValue: mockRouter },
         FormBuilder,
       ],
     }).compileComponents();
@@ -52,7 +49,7 @@ describe('InventoryItemComponent', () => {
     expect(component.form.value).toEqual({
       name: '', 
       category: '',
-      stock: '',
+      stock: 0,
       ProductId: null 
     });
   });

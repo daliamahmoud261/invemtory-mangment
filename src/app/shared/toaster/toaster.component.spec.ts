@@ -1,23 +1,21 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { ToasterComponent } from './toaster.component';
+import { MAT_SNACK_BAR_DATA, MatSnackBarRef } from '@angular/material/snack-bar';
 
 describe('ToasterComponent', () => {
-  let component: ToasterComponent;
-  let fixture: ComponentFixture<ToasterComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ToasterComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(ToasterComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [ToasterComponent],
+      providers: [
+        { provide: MAT_SNACK_BAR_DATA, useValue: { message: 'Test Message' } },
+        { provide: MatSnackBarRef, useValue: {} }
+      ]
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(ToasterComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });

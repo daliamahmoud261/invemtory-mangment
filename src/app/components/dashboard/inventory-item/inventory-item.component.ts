@@ -23,7 +23,7 @@ export class InventoryItemComponent {
     this.form = this.fb.group({
       name: ['', Validators.required],
       category: ['', Validators.required],
-      stock: ['', [Validators.required, Validators.min(0)]],
+      stock: [0, [Validators.required, Validators.min(1)]],
       ProductId: ['']
     });
     addEditService.item.subscribe({
@@ -41,7 +41,7 @@ export class InventoryItemComponent {
           this.form.patchValue({
             'name': '',
             'category': '',
-            'stock': '',
+            'stock': 0,
             'ProductId': null
           })
           this.isEdit = false

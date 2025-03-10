@@ -1,7 +1,7 @@
 export interface productModel{
     ProductId?:number,
     ProductName?:string,
-    AvailablePieces?: number,
+    AvailablePieces?: number| string,
     category?:string,
     lastDate?:Date,
 }
