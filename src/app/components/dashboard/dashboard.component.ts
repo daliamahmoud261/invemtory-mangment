@@ -12,10 +12,13 @@ import { Router } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { SharedLoadingComponent } from '../../shared/shared-loading/shared-loading.component';
+import { delay, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatTableModule, MatFormField, MatLabel, MatSelectModule, FormsModule,
+  imports: [MatTableModule, MatFormField, MatLabel, MatSelectModule, FormsModule,SharedLoadingComponent,
     MatIconModule, CommonModule, MatFormFieldModule, MatInputModule, MatPaginator],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -25,16 +28,13 @@ export class DashboardComponent {
   displayedColumns: string[] = ['ProductName', 'category', 'AvailablePieces', 'lastDate', 'Edit'];
   editItems!: productModel
   destroyRef = inject(DestroyRef);
-
+  Loader:boolean=false
   constructor(private _inventoryService: InventoryService, private addEditService: AddEditItemsService,
     private router: Router
   ) { }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
@@ -53,12 +53,21 @@ export class DashboardComponent {
         }
       }
     });
-
   }
   inventoryData() {
+    this.Loader=true
     this._inventoryService.inventoryData().subscribe({
       next: (res: productModel[]) => {
         this.dataSource = new MatTableDataSource(res);
+        of(true).pipe(delay(1000)).subscribe({
+          next:()=>{
+            this.Loader=false
+            this.dataSource.paginator = this.paginator;
+          }
+        })
+      },
+      error:()=>{
+        this.Loader=false
       }
     })
   }

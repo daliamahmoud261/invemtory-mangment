@@ -7,6 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class InventoryService {
   inventoryList:productModel[]=data.data
+
   inventoryData(): Observable<productModel[]>{
     return of(this.inventoryList)
   }

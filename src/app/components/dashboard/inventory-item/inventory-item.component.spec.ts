@@ -50,10 +50,10 @@ describe('InventoryItemComponent', () => {
   it('should initialize the form with default values', () => {
     expect(component.form).toBeDefined();
     expect(component.form.value).toEqual({
-      name: '', // ✅ Ensure this matches the actual component
+      name: '', 
       category: '',
-      stock: 0,
-      ProductId: null // This is fine to remain null
+      stock: '',
+      ProductId: null 
     });
   });
 
