@@ -87,9 +87,9 @@ export class DashboardComponent {
     const filterValue = event.value;
     this.dataSource.filterPredicate = (data: any, filter: string) => {
       if (filter === "low") {
-        return data.AvailablePieces < 10;
+        return data.AvailablePieces < 60;
       } else if (filter === "in") {
-        return data.AvailablePieces >= 10;
+        return data.AvailablePieces >= 60;
       }
       return true;
     };
